@@ -3,27 +3,26 @@ package com.aluracursos.challengeconversor.principal;
 import com.aluracursos.challengeconversor.api.Requests;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        String ARS = null;
-        String GBP = null;
+        String base = "USD";
+        String target = "ARS";
+        double cantidadAConvertir = 100.0;
 
 
-        Requests conversor = null;
         try {
-            conversor = new Requests(ARS, GBP);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            Requests conversor = new Requests(base, target, cantidadAConvertir);
+            conversor.realizarSolicitud();
+            System.out.println("---------------------------------------------------");
+            System.out.println("Valor de cambio: ");
+            System.out.println(conversor);
+            System.out.println("---------------------------------------------------");
+
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e.getMessage());
         }
-
-        System.out.println("---------------------------------------------------");
-        System.out.println("Valor de cambio: ");
-        System.out.println(conversor);
-        System.out.println("---------------------------------------------------");
-
 
 
     }
