@@ -3,27 +3,32 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Requests  {
 
     String base;
     String target;
     double tasaConversion;
-    double cantidadAConvertir;
+     BigDecimal cantidadAConvertir;
     double totalConvertido;
+    List<Requests> requests = new ArrayList<>();
 
-    public Requests(String base, String target, double cantidadAConvertir) {
+    public Requests(String base, String target, BigDecimal cantidadAConvertir) throws IOException {
         this.base = base;
         this.target = target;
         this.cantidadAConvertir = cantidadAConvertir;
     }
 
-    public Requests(RequestExchangeRateApi nuevaRequest) {
+    public Requests(RequestExchangeRateApi nuevaRequest) throws IOException {
         this.base = nuevaRequest.base_code();
         this.target = nuevaRequest.target_code();
         this.tasaConversion = nuevaRequest.conversion_rate();
@@ -47,11 +52,11 @@ public class Requests  {
         this.target = target;
     }
 
-    public double getCantidad() {
+    public BigDecimal getCantidad() {
         return cantidadAConvertir;
     }
 
-    public void setCantidad(double cantidad) {
+    public void setCantidad(BigDecimal cantidad) {
         this.cantidadAConvertir = cantidad;
     }
 
@@ -93,6 +98,15 @@ public class Requests  {
         this.target = nuevaRequest.target_code();
         this.tasaConversion = nuevaRequest.conversion_rate();
         this.totalConvertido = nuevaRequest.conversion_result();
+    }
+
+    private void registro () throws IOException {
+        Gson gson = new Gson();
+        FileWriter escritura = new FileWriter("requests.json");
+        escritura.write(gson.toJson(requests));
+        escritura.close();
+        System.out.println("Finalizó la ejecución del programa!");
+
     }
 
 
