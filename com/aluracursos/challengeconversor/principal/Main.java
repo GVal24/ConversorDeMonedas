@@ -14,6 +14,7 @@ public class Main {
         Scanner lectura = new Scanner(System.in);
         String menu =
                 """
+                    
                     Elija el tipo de conversión a realizar:
                                         1. ARS a USD
                                         2. BOB a ARS
@@ -72,7 +73,7 @@ public class Main {
                 System.out.println("---------------------------------------------------");
 
             } catch (IOException | InterruptedException e) {
-                throw new RuntimeException("Error al procesar la colicitud" + e.getMessage());
+                throw new RuntimeException("Error al procesar la solicitud" + e.getMessage());
             }
 
         }

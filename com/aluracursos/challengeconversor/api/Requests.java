@@ -113,10 +113,13 @@ public class Requests  {
     @Override
     public String toString() {
         return  "Divisa de base: " + getBase() +
-                ".  Divisa de target: " + getTarget() +
-                ". Cantidad a convertir: " + getCantidad() +
-                ". Tasa de conversión: " + getTasaConversion() +
-                ".  Monto total convertido: " + totalConvertido;
+                "." + System.lineSeparator() +
+                "Divisa de target: " + getTarget() +
+                "." + System.lineSeparator() +
+                "Cantidad a convertir: " + getCantidad() +
+                "." + System.lineSeparator() +
+                "Tasa de conversión: " + getTasaConversion() +
+                "." + System.lineSeparator() + "Monto total convertido: " + totalConvertido;
     }
 
 
